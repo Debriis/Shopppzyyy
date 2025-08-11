@@ -1,0 +1,5 @@
+.category-tabs{padding:18px 20px}
+.category-tabs ul{display:flex;gap:18px;list-style:none;padding:0;margin:0;justify-content:center}
+.category-tabs li{cursor:pointer;padding:6px 10px;border-radius:999px;color:var(--muted);font-weight:600}
+.category-tabs li.active{background:#fff;border:1px solid #eee;color:var(--accent)}
+@media (max-width:700px){.category-tabs ul{overflow:auto;gap:12px;padding:0 6px}}

@@ -1,0 +1,6 @@
+.promo{padding:20px 0 80px}
+.promo-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+.big{background:#fff;padding:28px;border-radius:10px;display:flex;flex-direction:column;justify-content:center}
+.cols{display:flex;flex-direction:column;gap:14px}
+.col{background:#fff;padding:14px;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+@media (max-width:900px){.promo-grid{grid-template-columns:1fr}}

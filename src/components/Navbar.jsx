@@ -1,91 +1,37 @@
-import React, { useState } from 'react'
-import './Navbar.css' // Assuming you have a CSS file for styling
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useCart } from '../../context/CartContext'
+import './Navbar.css'
 
-
-export default function Navbar({ cartCount, onOpenCart, onSearch, onCategory }) {
-  const [q, setQ] = useState('')
-  function handleSearch(e) {
-    setQ(e.target.value)
-    onSearch(e.target.value)
-  }
+export default function Navbar(){
+  const { cart } = useCart()
+  const navigate = useNavigate()
+  const count = cart.reduce((s,i)=> s+i.qty, 0)
 
   return (
-    <header className="nav">
-      <div className="nav-left">
-        <div className="brand">Test <span className="muted">Shop</span></div>
-        <nav className="nav-links">
-          <button className="link">Home</button>
-          <button className="link">Shop</button>
-          <button className="link">Pages</button>
-          <button className="link">Blog</button>
-          <button className="link">Contact</button>
-        </nav>
-      </div>
+    <header className="mixtas-nav">
+      <div className="nav-inner container">
+        <div className="left">
+          <button className="menu-btn" onClick={() => navigate('/')}>☰</button>
+          <Link to="/" className="brand">Mixtas</Link>
+          <nav className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/">Shop</Link>
+            <Link to="/">Pages</Link>
+            <Link to="/">Blog</Link>
+            <Link to="/">Contact</Link>
+          </nav>
+        </div>
 
-      <div className="nav-right">
-        <input
-          value={q}
-          onChange={handleSearch}
-          className="search"
-          placeholder="Search products..."
-        />
-        <select className="cat" onChange={(e) => onCategory(e.target.value)}>
-          <option value="All">All</option>
-          <option value="Women">Women</option>
-          <option value="Men">Men</option>
-          <option value="Shoes">Shoes</option>
-          <option value="Bags">Bags</option>
-          <option value="Accessories">Accessories</option>
-        </select>
-        <button className="cart-btn" onClick={onOpenCart}>
-          Cart <span className="cart-count">{cartCount}</span>
-        </button>
+        <div className="right">
+          <input className="search" placeholder="Search products..." onKeyDown={(e)=> {
+            if(e.key === 'Enter') navigate(`/?q=${encodeURIComponent(e.target.value)}`)
+          }} />
+          <Link to="/cart" className="cart-link">
+            🛒 <span className="cart-count">{count}</span>
+          </Link>
+        </div>
       </div>
     </header>
   )
 }
-import React, { useState } from 'react'
-
-export default function Navbar({ cartCount, onOpenCart, onSearch, onCategory }) {
-  const [q, setQ] = useState('')
-  function handleSearch(e) {
-    setQ(e.target.value)
-    onSearch(e.target.value)
-  }
-
-  return (
-    <header className="nav">
-      <div className="nav-left">
-        <div className="brand">Mixtas <span className="muted">Shop</span></div>
-        <nav className="nav-links">
-          <button className="link">Home</button>
-          <button className="link">Shop</button>
-          <button className="link">Pages</button>
-          <button className="link">Blog</button>
-          <button className="link">Contact</button>
-        </nav>
-      </div>
-
-      <div className="nav-right">
-        <input
-          value={q}
-          onChange={handleSearch}
-          className="search"
-          placeholder="Search products..."
-        />
-        <select className="cat" onChange={(e) => onCategory(e.target.value)}>
-          <option value="All">All</option>
-          <option value="Women">Women</option>
-          <option value="Men">Men</option>
-          <option value="Shoes">Shoes</option>
-          <option value="Bags">Bags</option>
-          <option value="Accessories">Accessories</option>
-        </select>
-        <button className="cart-btn" onClick={onOpenCart}>
-          Cart <span className="cart-count">{cartCount}</span>
-        </button>
-      </div>
-    </header>
-  )
-}
-

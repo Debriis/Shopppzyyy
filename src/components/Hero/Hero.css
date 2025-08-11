@@ -1,0 +1,12 @@
+.hero{position:relative;height:56vh;min-height:420px;overflow:hidden;border-bottom:1px solid #eee}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.02);transition:opacity .5s, transform .6s}
+.hero-slide.active{opacity:1;transform:scale(1)}
+.hero-inner{position:absolute;left:6%;bottom:18%;max-width:520px;color:white;background:linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.08));padding:28px;border-radius:8px}
+.hero-inner h1{font-size:38px;margin:8px 0}
+.hero-dots{position:absolute;right:20px;bottom:20px;display:flex;gap:8px}
+.dot{width:12px;height:12px;border-radius:999px;border:1px solid rgba(255,255,255,0.8);background:transparent}
+.dot.on{background:white}
+@media (max-width:700px){
+  .hero-inner{left:5%;bottom:10%;padding:18px}
+  .hero-inner h1{font-size:24px}
+}
